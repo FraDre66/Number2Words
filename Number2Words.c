@@ -105,11 +105,12 @@ static int number_string_to_words(const char *numstr, char *out, size_t out_size
                     } else {
                         tlen += snprintf(temp+tlen, sizeof(temp)-tlen, "%stausend", part_word);
                     }
-                } else if (i < (int)MAX_GROUPS) {
+                } else {
                     if (val == 1) {
                         tlen += snprintf(temp+tlen, sizeof(temp)-tlen, "eine %s ", big_units[i]);
                     } else if (val > 0) {
                         char plural[3] = "";
+                        //  set plural ending in German uints: illio[n] => illion[en], or illiard[e] => illarde[n]
                         if (big_units[i][strlen(big_units[i])-1] == 'e') {
                             plural[0] = 'n'; plural[1] = '\0';
                         } else if (big_units[i][strlen(big_units[i])-1] == 'n') {
@@ -218,5 +219,4 @@ int main(int argc, char *argv[]) {
         }
     }
     return result;
-
 }
