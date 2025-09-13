@@ -159,12 +159,7 @@ static int number_to_words_small(int n, char *out, size_t out_size) {
             if (hundred == 1) {
                 len += snprintf(temp+len, sizeof(temp)-len, "einhundert");
             } else {
-                if (strcmp(units[hundred], "eins") == 0) {
-                    len += snprintf(temp+len, sizeof(temp)-len, "einhundert");
-                } else {
-                    len += snprintf(temp+len, sizeof(temp)-len, "%s", units[hundred]);
-                    len += snprintf(temp+len, sizeof(temp)-len, "hundert");
-                }
+                len += snprintf(temp+len, sizeof(temp)-len, "%shundert", units[hundred]);
             }
         }
         if (tenunit > 0) {
@@ -223,4 +218,5 @@ int main(int argc, char *argv[]) {
         }
     }
     return result;
+
 }
