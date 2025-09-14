@@ -33,8 +33,8 @@ static const char * const big_units[] = {"einer",
   "Trequadragintilliarde", "Quattuorquadragintillion", "Quattuorquadragintilliarde", "Quinquadragintillion", "Quinquadragintilliarde",
   "Sequadragintillion", "Sequadragintilliarde", "Septenquadragintillion", "Septenquadragintilliarde", "Oktoquadragintillion",
   "Oktoquadragintilliarde", "Novemquadragintillion", "Novemquadragintilliarde", "Quinquagintillion", "Quinquagintilliarde",
-  "Unquinquagintillion", "Unquinquagintilliarde", "Duoquinquagintillion", "Duoquinquagintilliarde", "Tresquinquagintillion",
-  "Tresquinquagintilliarde",
+  "Unquinquagintillion", "Unquinquagintilliarde", "Doquinquagintillion", "Doquinquagintilliarde", "Tresquinquagintillion",
+  "Tresquinquagintilliarde", "Quattuorquinquagintillion", "Quattuorquinquagintilliarde",
 };
 #define MAX_GROUPS (sizeof(big_units) / sizeof(big_units[0]))
 #define MAX_RESULT_LEN (MAX_GROUPS * MAX_WORD_LEN)
