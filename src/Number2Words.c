@@ -20,10 +20,11 @@ static const char * const tens[] = {
 #define MAX_RESULT_LEN (1024*1024)
 static int number_to_words_small(int n, char *out, size_t out_size);
 
-/**
- *
- *
- *
+/** Generates the name of the group using the Cornway / Wechsler system in German (long scale)
+ * @param[in] group    Number of 3-digit-group (>=2)
+ * @param[out] out     Output buffer for the word
+ * @param[in] out_size Size of the output buffer
+ * @return 0 on success, 1 on failure
  */
 static int cornway_wechsler_german(unsigned int group, char *out, size_t out_size) {
     const char * const first_illions[10]= {"-", "Mi","Bi", "Tri", "Quadri", "Quinti", "Sexti", "Septi", "Okti", "Noni"};
@@ -257,4 +258,5 @@ int main(int argc, char *argv[]) {
     }
     return result;
 }
+
 
