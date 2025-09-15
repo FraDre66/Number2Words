@@ -8,15 +8,6 @@
 #include <windows.h>
 #endif
 #define MAX_WORD_LEN 128U
-static const char * const units[] = {
-    "null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun"
-};
-static const char * const teens[] = {
-    "zehn", "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"
-};
-static const char * const tens[] = {
-    "", "zehn", "zwanzig", "dreißig", "vierzig", "fünfzig", "sechzig", "siebzig", "achtzig", "neunzig"
-};
 #define MAX_RESULT_LEN (1024*1024)
 static int number_to_words_small(int n, char *out, size_t out_size);
 
@@ -181,6 +172,9 @@ static int number_string_to_words(const char *numstr, char *out, size_t out_size
  * @return 0 on success, 1 on failure
  */
 static int number_to_words_small(int n, char *out, size_t out_size) {
+    const char * const units[] = {"null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun"};
+    const char * const teens[] = {"zehn", "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"};
+    const char * const tens[] = {"", "zehn", "zwanzig", "dreißig", "vierzig", "fünfzig", "sechzig", "siebzig", "achtzig", "neunzig"};
     int result = 1;
     out[0] = '\0';
     if (n < 0 || n >= 1000) {
@@ -258,5 +252,6 @@ int main(int argc, char *argv[]) {
     }
     return result;
 }
+
 
 
