@@ -92,13 +92,13 @@ static int cornway_wechsler_german(unsigned int group, char *out, size_t out_siz
 static int number_string_to_words(const char *numstr, char *out, size_t out_size) {
     int result = 0;
     out[0] = '\0';
-    size_t len = strlen(numstr);
-    if (len == 0) {
+    size_t num_digits = strlen(numstr);
+    if (num_digits == 0) {
         snprintf(out, out_size, "(not supported)");
         result = 1;
     } else {
         // Check if only digits
-        for (size_t i = 0; i < len; i++) {
+        for (size_t i = 0; i < num_digits; i++) {
             if (numstr[i] < '0' || numstr[i] > '9') {
                 result = 1;
                 break;
@@ -107,8 +107,8 @@ static int number_string_to_words(const char *numstr, char *out, size_t out_size
         if (result != 0) {
             snprintf(out, out_size, "Invalid input");
         } else {
-            unsigned int group_idx = (len-1)/3; // starting with highest 3-digit group (starting with 0)
-            unsigned int group_len = (len-1)%3+1; // length of highest 3-digit group (1-3), all other have always 3-digits
+            unsigned int group_idx = (num_digits-1)/3; // starting with highest 3-digit group (starting with 0)
+            unsigned int group_len = (num_digits-1)%3+1; // length of highest 3-digit group (1-3), all other have always 3-digits
             size_t pos = 0;
             size_t tlen = 0;
             do {
@@ -121,8 +121,8 @@ static int number_string_to_words(const char *numstr, char *out, size_t out_size
                 pos += group_len;
                 group_len=3; // all further group will have 3 digit
                 n = atoi(cur_group); // value of the current group
-                if (n == 0 && group_idx > 0) {
-                    continue; // Skip empty groups, except the less significant one
+                if (n == 0 && num_digits > 3) {
+                    continue; // Skip empty groups, except "0"
                 }
                 if (number_to_words_small(n, group_str, sizeof(group_str)) != 0) {
                     snprintf(out, out_size, "(number_to_words_small: not supported)");

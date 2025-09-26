@@ -43,21 +43,21 @@ clean:
 debug: CFLAGS += -ggdb
 debug: clean $(TARGET)
 	@echo === Built with debug information now start debugger ===
-	sudo killall $(TARGET) 2> /dev/null || true
-	sudo gdb $(TARGET) 
+	$(SUDO) killall $(TARGET) 2> /dev/null || true
+	$(SUDO) gdb $(TARGET) 
 
 # install: copy the current binary to /usr/local/bin
 .PHONY: install
 install: clean $(TARGET)
 	@echo === Install $@ ===
-	sudo killall $(TARGET) 2> /dev/null || true
-	sudo cp $(TARGET) /usr/local/bin
-	sudo cp $(TARGET).ini /usr/local/bin
-	sudo chmod 744 /usr/local/bin/$(TARGET)
-	sudo chmod 644 /usr/local/bin/$(TARGET).ini
+	$(SUDO) killall $(TARGET) 2> /dev/null || true
+	$(SUDO) cp $(TARGET) /usr/local/bin
+	$(SUDO) cp $(TARGET).ini /usr/local/bin
+	$(SUDO) chmod 744 /usr/local/bin/$(TARGET)
+	$(SUDO) chmod 644 /usr/local/bin/$(TARGET).ini
 
 # start the application
 .PHONY: run
 run: $(TARGET)
-	sudo killall $(TARGET) 2> /dev/null || true
-	sudo ./$(TARGET)
+	$(SUDO) killall $(TARGET) 2> /dev/null || true
+	$(SUDO) ./$(TARGET) 1234567845
